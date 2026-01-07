@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "982011977114",
+    "project_id": "zv-transport-gbr-app",
+    "storage_bucket": "zv-transport-gbr-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982011977114:android:342ca1df4ad465859e6e23",
+        "android_client_info": {
+          "package_name": "com.example.zv_transport_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAYbD1jUadklAKR53fKZ5uAmEI-VuuQo8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
