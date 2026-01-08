@@ -110,50 +110,33 @@ class QuickStartScreen extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
-          Row(
-            children: [
-              Expanded(
-                child: _BigTile(
-                  title: 'Umzug',
-                  subtitle: 'Wohnung, Haus, Büro',
-                  icon: Icons.inventory_2,
-                  onTap: () => _startWizard(context, ZVService.umzug),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _BigTile(
-                  title: 'Transport',
-                  subtitle: 'Möbel, Geräte, Kleintransport',
-                  icon: Icons.local_shipping,
-                  onTap: () => _startWizard(context, ZVService.transport),
-                ),
-              ),
-            ],
+          _BigTile(
+            title: 'Umzug',
+            subtitle: 'Wohnung, Haus, Büro',
+            icon: Icons.inventory_2,
+            onTap: () => _startWizard(context, ZVService.umzug),
           ),
-          const SizedBox(height: 12),
-
-          Row(
-            children: [
-              Expanded(
-                child: _BigTile(
-                  title: 'Entrümpelung',
-                  subtitle: 'Keller, Wohnung, Garage',
-                  icon: Icons.delete_sweep,
-                  onTap: () => _startWizard(context, ZVService.entruempelung),
-                ),
-              ),
-              const SizedBox(width: 12),
-              const Expanded(
-                child: _BigTile(
-                  title: 'Altro',
-                  subtitle: 'Coming soon',
-                  icon: Icons.auto_awesome,
-                  disabled: true,
-                  onTap: null,
-                ),
-              ),
-            ],
+          const SizedBox(height: 8),
+          _BigTile(
+            title: 'Transport',
+            subtitle: 'Möbel, Geräte, Kleintransport',
+            icon: Icons.local_shipping,
+            onTap: () => _startWizard(context, ZVService.transport),
+          ),
+          const SizedBox(height: 8),
+          _BigTile(
+            title: 'Entrümpelung',
+            subtitle: 'Keller, Wohnung, Garage',
+            icon: Icons.delete_sweep,
+            onTap: () => _startWizard(context, ZVService.entruempelung),
+          ),
+          const SizedBox(height: 8),
+          const _BigTile(
+            title: 'Altro',
+            subtitle: 'Coming soon',
+            icon: Icons.auto_awesome,
+            disabled: true,
+            onTap: null,
           ),
 
           const SizedBox(height: 16),
@@ -231,51 +214,49 @@ class _BigTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Opacity(
       opacity: disabled ? 0.7 : 1,
-      child: AspectRatio(
-        aspectRatio: 1,
-        child: ZVCard(
-          padding: const EdgeInsets.all(14),
-          onTap: disabled ? null : onTap,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 56,
-                height: 56,
-                decoration: BoxDecoration(
-                  color: ZVColors.primarySoft,
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: ZVColors.primary.withOpacity(0.25)),
-                ),
-                child: Icon(icon, size: 28, color: ZVColors.textPrimary),
+      child: ZVCard(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        onTap: disabled ? null : onTap,
+        child: Row(
+          children: [
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: ZVColors.primarySoft,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: ZVColors.primary.withOpacity(0.25)),
               ),
-              const SizedBox(height: 12),
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w900,
-                  color: ZVColors.textPrimary,
-                ),
-              ),
-              const SizedBox(height: 6),
-              SizedBox(
-                height: 32,
-                child: Text(
-                  subtitle,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    height: 1.25,
-                    color: ZVColors.textSecondary,
+              child: Icon(icon, size: 22, color: ZVColors.textPrimary),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900,
+                      color: ZVColors.textPrimary,
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: ZVColors.textSecondary,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
