@@ -7,7 +7,7 @@ import '../../components/zv_number_field.dart';
 import '../../components/zv_step_bar.dart';
 import '../../components/zv_topbar.dart';
 import '../shared/wizard/wizard_state.dart';
-import 'wizard_summary_screen.dart';
+import 'umzug_summary.dart';
 
 class WizardDetailsScreen extends StatefulWidget {
   final WizardState st;

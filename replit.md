@@ -20,21 +20,48 @@ lib/
 │   ├── theme/               - Colors and styling
 │   ├── utils/               - UI helper utilities
 │   └── screens/
-│       ├── entruempelung/   - Entrümpelung service screens
-│       │   └── sections/    - Step1, Step2, entru UI/waste categories
-│       ├── umzug/           - Umzug (moving) service screens
-│       │   └── wizard_*     - Address, contact, details, summary screens
-│       ├── transport/       - Transport service screens (placeholder)
-│       ├── altro/           - Altro service (coming soon placeholder)
-│       ├── anfragen/        - Requests management screens
-│       │   ├── dashboard_screen.dart
-│       │   ├── requests_screen.dart
-│       │   └── request_detail_screen.dart
-│       └── shared/          - Shared screens and wizard components
-│           ├── wizard/      - Common wizard state and shell
-│           │   └── sections/ - Shared wizard sections
-│           ├── quick_start_screen.dart
-│           ├── home_screen.dart
+│       ├── entruempelung/           - Entrümpelung service
+│       │   ├── entruempelung_step1.dart
+│       │   ├── entruempelung_step2.dart
+│       │   └── widgets/
+│       │       ├── entruempelung_ui.dart
+│       │       └── entruempelung_waste_categories.dart
+│       │
+│       ├── umzug/                   - Umzug (moving) service
+│       │   ├── umzug_address.dart
+│       │   ├── umzug_contact.dart
+│       │   ├── umzug_details.dart
+│       │   └── umzug_summary.dart
+│       │
+│       ├── transport/               - Transport service (placeholder)
+│       │
+│       ├── altro/                   - Altro service
+│       │   └── altro_coming_soon.dart
+│       │
+│       ├── anfragen/                - Requests management
+│       │   ├── anfragen_dashboard.dart
+│       │   ├── anfragen_list.dart
+│       │   └── anfragen_detail.dart
+│       │
+│       └── shared/                  - Shared components
+│           ├── home/
+│           │   ├── home_screen.dart
+│           │   ├── home_shell.dart
+│           │   ├── home_start.dart
+│           │   └── quick_start.dart
+│           ├── wizard/
+│           │   ├── wizard_state.dart
+│           │   ├── wizard_shell.dart
+│           │   └── steps/
+│           │       ├── step_addresses.dart
+│           │       ├── step_contact.dart
+│           │       ├── step_contact_addresses.dart
+│           │       ├── step_home.dart
+│           │       ├── step_inventory.dart
+│           │       ├── step_price_type.dart
+│           │       ├── step_service.dart
+│           │       ├── step_summary.dart
+│           │       └── step_tech.dart
 │           └── splash_screen.dart
 └── utils/                   - General utilities (share, PDF, etc.)
 ```
@@ -42,7 +69,7 @@ lib/
 ## Service-Based Organization
 - **Entrümpelung** - Clearing/junk removal service flow
 - **Umzug** - Moving service flow
-- **Transport** - Transport service flow
+- **Transport** - Transport service flow (placeholder)
 - **Altro** - Coming soon placeholder
 - **Anfragen** - Requests list and detail views
 - **Shared** - Common components used across all services
@@ -60,8 +87,8 @@ Key packages:
 - image_picker (Image selection)
 
 ## Recent Changes
-- 2026-01-08: Restructured app into service-based folders (entruempelung/, umzug/, transport/, altro/, anfragen/, shared/)
-- 2026-01-08: Fixed all import paths after restructuring
-- 2026-01-08: Created Altro coming soon placeholder
+- 2026-01-08: Renamed all files with logical naming convention (service_purpose.dart)
+- 2026-01-08: Reorganized subfolders to match parent folder naming
+- 2026-01-08: Restructured wizard sections to steps/
 - 2026-01-08: Configured for Replit environment with SDK ^3.8.0
 - 2026-01-08: Set up static file serving workflow on port 5000

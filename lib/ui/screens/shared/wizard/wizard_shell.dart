@@ -4,17 +4,17 @@ import 'wizard_state.dart';
 import '../../../../models/request.dart' as m;
 
 // sections comuni
-import 'sections/section_price_type.dart';
-import 'sections/section_tech.dart';
-import 'sections/section_inventory.dart';
-import 'sections/section_summary.dart';
+import 'steps/step_price_type.dart';
+import 'steps/step_tech.dart';
+import 'steps/step_inventory.dart';
+import 'steps/step_summary.dart';
 
 // contact
-import 'sections/section_contact_addresses.dart';
+import 'steps/step_contact_addresses.dart';
 
 // Entrümpelung
-import '../../entruempelung/sections/step1.dart';
-import '../../entruempelung/sections/step2.dart';
+import '../../entruempelung/entruempelung_step1.dart';
+import '../../entruempelung/entruempelung_step2.dart';
 
 enum WizardSection {
   priceType,

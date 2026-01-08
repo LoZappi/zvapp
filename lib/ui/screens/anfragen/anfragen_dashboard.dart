@@ -5,9 +5,9 @@ import '../../../data/requests_repo.dart';
 import '../../components/zv_card.dart';
 import '../../components/zv_section_header.dart';
 import '../../components/zv_topbar.dart';
-import 'requests_screen.dart';
-import 'request_detail_screen.dart';
-import '../shared/wizard/wizard_shell_screen.dart';
+import 'anfragen_list.dart';
+import 'anfragen_detail.dart';
+import '../shared/wizard/wizard_shell.dart';
 import '../shared/wizard/wizard_state.dart';
 
 class DashboardScreen extends StatefulWidget {

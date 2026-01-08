@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 
-import '../../shared/wizard/wizard_state.dart';
+import '../shared/wizard/wizard_state.dart';
 import '../../../../models/request.dart';
 
 class SectionEntruempelungStep2 extends StatelessWidget {
