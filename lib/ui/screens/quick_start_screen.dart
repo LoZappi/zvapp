@@ -110,33 +110,49 @@ class QuickStartScreen extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
-          _BigTile(
-            title: 'Umzug',
-            subtitle: 'Wohnung, Haus, Büro',
-            icon: Icons.inventory_2,
-            onTap: () => _startWizard(context, ZVService.umzug),
+          Row(
+            children: [
+              Expanded(
+                child: _BigTile(
+                  title: 'Umzug',
+                  subtitle: 'Wohnung, Haus, Büro',
+                  icon: Icons.inventory_2,
+                  onTap: () => _startWizard(context, ZVService.umzug),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _BigTile(
+                  title: 'Transport',
+                  subtitle: 'Möbel, Geräte, Kleintransport',
+                  icon: Icons.local_shipping,
+                  onTap: () => _startWizard(context, ZVService.transport),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
-          _BigTile(
-            title: 'Transport',
-            subtitle: 'Möbel, Geräte, Kleintransport',
-            icon: Icons.local_shipping,
-            onTap: () => _startWizard(context, ZVService.transport),
-          ),
-          const SizedBox(height: 8),
-          _BigTile(
-            title: 'Entrümpelung',
-            subtitle: 'Keller, Wohnung, Garage',
-            icon: Icons.delete_sweep,
-            onTap: () => _startWizard(context, ZVService.entruempelung),
-          ),
-          const SizedBox(height: 8),
-          const _BigTile(
-            title: 'Altro',
-            subtitle: 'Coming soon',
-            icon: Icons.auto_awesome,
-            disabled: true,
-            onTap: null,
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _BigTile(
+                  title: 'Entrümpelung',
+                  subtitle: 'Keller, Wohnung, Garage',
+                  icon: Icons.delete_sweep,
+                  onTap: () => _startWizard(context, ZVService.entruempelung),
+                ),
+              ),
+              const SizedBox(width: 10),
+              const Expanded(
+                child: _BigTile(
+                  title: 'Altro',
+                  subtitle: 'Coming soon',
+                  icon: Icons.auto_awesome,
+                  disabled: true,
+                  onTap: null,
+                ),
+              ),
+            ],
           ),
 
           const SizedBox(height: 16),
@@ -215,45 +231,40 @@ class _BigTile extends StatelessWidget {
     return Opacity(
       opacity: disabled ? 0.7 : 1,
       child: ZVCard(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
         onTap: disabled ? null : onTap,
-        child: Row(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 44,
-              height: 44,
+              width: 32,
+              height: 32,
               decoration: BoxDecoration(
                 color: ZVColors.primarySoft,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: ZVColors.primary.withOpacity(0.25)),
               ),
-              child: Icon(icon, size: 22, color: ZVColors.textPrimary),
+              child: Icon(icon, size: 16, color: ZVColors.textPrimary),
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w900,
-                      color: ZVColors.textPrimary,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    subtitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: ZVColors.textSecondary,
-                    ),
-                  ),
-                ],
+            const SizedBox(height: 6),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w900,
+                color: ZVColors.textPrimary,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 9,
+                color: ZVColors.textSecondary,
               ),
             ),
           ],
