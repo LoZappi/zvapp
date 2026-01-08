@@ -1,19 +1,9 @@
-# Flutter
-.dart_tool/
-.packages
-.pub/
-.pub-cache/
-build/
-
-# IDE
-.idea/
-.vscode/
-.vs/
-*.iml
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
+/build/
+/.dart_tool/
+/.idea/
+/.vscode/
 *.log
+
+ios/Pods/
+android/.gradle/
+android/local.properties
