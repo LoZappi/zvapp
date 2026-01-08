@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../models/request.dart';
+import '../../../../../models/request.dart';
 import '../wizard_state.dart';
 
 class SectionPriceType extends StatefulWidget {

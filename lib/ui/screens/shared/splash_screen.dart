@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../data/requests_repo.dart';
+import '../../../data/requests_repo.dart';
 import 'quick_start_screen.dart';
 
 class SplashScreen extends StatefulWidget {

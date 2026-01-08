@@ -4,7 +4,7 @@ import '../../theme/zv_colors.dart';
 import '../../components/zv_card.dart';
 import '../../components/zv_step_bar.dart';
 import '../../components/zv_topbar.dart';
-import 'wizard_state.dart';
+import '../shared/wizard/wizard_state.dart';
 import 'wizard_details_screen.dart';
 
 class WizardAddressScreen extends StatefulWidget {

@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 
 import '../wizard_state.dart';
-import '../../../../models/request.dart';
+import '../../../../../models/request.dart';
 
 class SectionInventory extends StatefulWidget {
   final WizardState st;

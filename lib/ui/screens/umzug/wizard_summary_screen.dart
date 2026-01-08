@@ -7,7 +7,7 @@ import '../../components/zv_card.dart';
 import '../../components/zv_section_header.dart';
 import '../../components/zv_step_bar.dart';
 import '../../components/zv_topbar.dart';
-import 'wizard_state.dart';
+import '../shared/wizard/wizard_state.dart';
 
 class WizardSummaryScreen extends StatelessWidget {
   final WizardState st;

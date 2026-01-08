@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../data/requests_repo.dart';
-import '../utils/request_ui_helpers.dart';
+import '../../../data/requests_repo.dart';
+import '../../utils/request_ui_helpers.dart';
 
 class RequestsScreen extends StatefulWidget {
   final RequestsRepo repo;

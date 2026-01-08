@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../wizard_state.dart';
+import '../../shared/wizard/wizard_state.dart';
 import '../../../../models/request.dart';
 
 class SectionEntruempelungStep1 extends StatefulWidget {

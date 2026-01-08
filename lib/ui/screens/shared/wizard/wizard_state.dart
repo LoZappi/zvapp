@@ -1,4 +1,4 @@
-﻿import '../../../models/request.dart';
+﻿import '../../../../models/request.dart';
 
 class WizardState {
   final Request req;

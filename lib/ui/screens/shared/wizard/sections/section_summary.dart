@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../models/request.dart';
-import '../../../utils/request_ui_helpers.dart';
+import '../../../../../models/request.dart';
+import '../../../../utils/request_ui_helpers.dart';
 import '../wizard_state.dart';
 
 class SectionSummary extends StatelessWidget {

@@ -3,8 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'firebase_options.dart';
 import 'data/requests_repo.dart';
-import 'ui/screens/quick_start_screen.dart';
-import 'ui/screens/requests_screen.dart';
+import 'ui/screens/shared/quick_start_screen.dart';
+import 'ui/screens/anfragen/requests_screen.dart';
 
 final RequestsRepo _globalRepo = RequestsRepo();
 

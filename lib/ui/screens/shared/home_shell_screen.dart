@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../data/requests_repo.dart';
-import 'dashboard_screen.dart';
+import '../../../data/requests_repo.dart';
+import '../anfragen/dashboard_screen.dart';
 
 class HomeShellScreen extends StatelessWidget {
   final RequestsRepo repo;

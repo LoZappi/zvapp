@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../models/request.dart';
-import '../utils/request_ui_helpers.dart';
-import '../../data/requests_repo.dart';
-import '../components/zv_card.dart';
-import '../components/zv_section_header.dart';
-import '../components/zv_topbar.dart';
+import '../../../models/request.dart';
+import '../../utils/request_ui_helpers.dart';
+import '../../../data/requests_repo.dart';
+import '../../components/zv_card.dart';
+import '../../components/zv_section_header.dart';
+import '../../components/zv_topbar.dart';
 import 'requests_screen.dart';
 import 'request_detail_screen.dart';
-import 'wizard/wizard_shell_screen.dart';
-import 'wizard/wizard_state.dart';
+import '../shared/wizard/wizard_shell_screen.dart';
+import '../shared/wizard/wizard_state.dart';
 
 class DashboardScreen extends StatefulWidget {
   final RequestsRepo repo;
