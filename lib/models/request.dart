@@ -43,6 +43,28 @@ class Request {
   DateTime? date;
   String note;
 
+  // critical items
+  int washingMachine;
+  int dryer;
+  int fridge;
+  int sofaLarge;
+  int wardrobeLarge;
+  int tvLarge;
+  bool specialItem;
+
+  // access conditions
+  ParkingDistance parkingDistance;
+  bool difficultZone;
+  bool timeRestricted;
+
+  // breakdown fields
+  int brBase;
+  int brVolume;
+  int brFloors;
+  int brItems;
+  int brAccess;
+  int brExtras;
+
   // premium house basics
   int homeSqm;
   int rooms;
@@ -106,6 +128,28 @@ class Request {
 
     this.date,
     this.note = '',
+
+    // critical items
+    this.washingMachine = 0,
+    this.dryer = 0,
+    this.fridge = 0,
+    this.sofaLarge = 0,
+    this.wardrobeLarge = 0,
+    this.tvLarge = 0,
+    this.specialItem = false,
+
+    // access conditions
+    this.parkingDistance = ParkingDistance.short,
+    this.difficultZone = false,
+    this.timeRestricted = false,
+
+    // breakdown
+    this.brBase = 0,
+    this.brVolume = 0,
+    this.brFloors = 0,
+    this.brItems = 0,
+    this.brAccess = 0,
+    this.brExtras = 0,
 
     this.homeSqm = 0,
     this.rooms = 0,

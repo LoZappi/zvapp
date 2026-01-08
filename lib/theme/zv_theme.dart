@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'zv_colors.dart';
+import '../ui/theme/zv_colors.dart';
 
 class ZVTheme {
   static ThemeData light() {
@@ -11,7 +11,6 @@ class ZVTheme {
       colorScheme: base.colorScheme.copyWith(
         primary: ZVColors.primary,
         surface: ZVColors.card,
-        background: ZVColors.background,
       ),
 
       appBarTheme: const AppBarTheme(
@@ -32,7 +31,7 @@ class ZVTheme {
         displayColor: ZVColors.textPrimary,
       ),
 
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: ZVColors.card,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
@@ -52,7 +51,7 @@ class ZVTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide(color: ZVColors.primary.withOpacity(0.8), width: 1.6),
+          borderSide: BorderSide(color: ZVColors.primary.withValues(alpha: 0.8), width: 1.6),
         ),
         labelStyle: const TextStyle(fontWeight: FontWeight.w800),
       ),

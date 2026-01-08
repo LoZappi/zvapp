@@ -9,7 +9,7 @@ import 'sections/section_tech.dart';
 import 'sections/section_inventory.dart';
 import 'sections/section_summary.dart';
 
-// ✅ NEW: unica schermata contatto+indirizzi
+// contact
 import 'sections/section_contact_addresses.dart';
 
 // Entrümpelung

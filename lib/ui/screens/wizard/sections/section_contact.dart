@@ -60,7 +60,7 @@ class _SectionContactState extends State<SectionContact> {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: BorderSide(color: ZVColors.primary.withOpacity(0.9), width: 2),
+        borderSide: BorderSide(color: ZVColors.primary.withValues(alpha: 0.9), width: 2),
       ),
       isDense: true,
     );

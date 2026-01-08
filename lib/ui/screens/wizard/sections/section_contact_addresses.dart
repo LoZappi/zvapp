@@ -68,248 +68,143 @@ class _SectionContactAddressesState extends State<SectionContactAddresses> {
     super.dispose();
   }
 
-  void _syncToModel() {
+  void _applyData() {
     r.name = _nameC.text.trim();
     r.phone = _phoneC.text.trim();
     r.email = _emailC.text.trim();
-
     r.pickupAddress = _pickupC.text.trim();
     r.dropoffAddress = _dropoffC.text.trim();
-
     r.note = _noteC.text.trim();
-
-    r.extraStops = _stopControllers
-        .map((c) => c.text.trim())
-        .where((s) => s.isNotEmpty)
-        .toList();
+    r.extraStops = _stopControllers.map((c) => c.text.trim()).where((s) => s.isNotEmpty).toList();
   }
 
-  bool _isValid() {
-    final isEntru = r.service == ZVService.entruempelung;
-
-    final nameOk = _nameC.text.trim().isNotEmpty;
-    final phoneOk = _phoneC.text.trim().isNotEmpty;
-    final pickupOk = _pickupC.text.trim().isNotEmpty;
-
-    // per Entrümpelung spesso basta 1 indirizzo
-    final dropOk = isEntru ? true : _dropoffC.text.trim().isNotEmpty;
-
-    return nameOk && phoneOk && pickupOk && dropOk;
-  }
-
-  Future<void> _pickDate() async {
-    final now = DateTime.now();
-    final initial = r.date ?? now;
-
-    final picked = await showDatePicker(
-      context: context,
-      initialDate: initial,
-      firstDate: DateTime(now.year, now.month, now.day),
-      lastDate: DateTime(now.year + 2),
-    );
-
-    if (picked == null) return;
-    setState(() => r.date = picked);
+  bool get _canContinue {
+    return _nameC.text.trim().isNotEmpty &&
+        _phoneC.text.trim().isNotEmpty &&
+        _pickupC.text.trim().isNotEmpty &&
+        _dropoffC.text.trim().isNotEmpty;
   }
 
   void _addStop() {
-    setState(() => _stopControllers.add(TextEditingController()));
+    setState(() {
+      _stopControllers.add(TextEditingController());
+    });
   }
 
-  void _removeStop(int i) {
+  void _removeStop(int index) {
     setState(() {
-      _stopControllers[i].dispose();
-      _stopControllers.removeAt(i);
+      _stopControllers[index].dispose();
+      _stopControllers.removeAt(index);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final isEntru = r.service == ZVService.entruempelung;
-
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
+      padding: const EdgeInsets.all(16),
       children: [
-        const ZVSectionHeader(
-          badge: 'KONTAKT & ADRESSEN',
-          title: 'Daten für die Anfrage',
-          subtitle: 'Kontakt + Start/Ziel + optionale Zusatzstopps.',
-        ),
-        const SizedBox(height: 12),
-
-        _blockTitle('Kontakt'),
+        const ZVSectionHeader(title: 'Kontakt'),
         const SizedBox(height: 8),
         ZVCard(
-          padding: const EdgeInsets.all(12),
           child: Column(
             children: [
-              _field(
+              TextField(
                 controller: _nameC,
-                label: 'Name & Nachname',
-                icon: Icons.person,
+                decoration: const InputDecoration(labelText: 'Name *'),
                 onChanged: (_) => setState(() {}),
               ),
-              const SizedBox(height: 10),
-              _field(
+              const SizedBox(height: 12),
+              TextField(
                 controller: _phoneC,
-                label: 'Telefon',
-                icon: Icons.phone,
                 keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(labelText: 'Telefon *'),
                 onChanged: (_) => setState(() {}),
               ),
-              const SizedBox(height: 10),
-              _field(
+              const SizedBox(height: 12),
+              TextField(
                 controller: _emailC,
-                label: 'E-Mail (optional)',
-                icon: Icons.email,
                 keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(labelText: 'E-Mail'),
+                onChanged: (_) => setState(() {}),
               ),
             ],
           ),
         ),
-
-        const SizedBox(height: 14),
-
-        _blockTitle('Adresse(n)'),
+        const SizedBox(height: 20),
+        const ZVSectionHeader(title: 'Adressen'),
         const SizedBox(height: 8),
         ZVCard(
-          padding: const EdgeInsets.all(12),
           child: Column(
             children: [
-              _field(
+              TextField(
                 controller: _pickupC,
-                label: isEntru ? 'Adresse (Ort der Entrümpelung)' : 'Abholadresse (Start)',
-                icon: Icons.place,
+                decoration: const InputDecoration(labelText: 'Abholadresse *'),
                 onChanged: (_) => setState(() {}),
               ),
-
-              if (!isEntru) ...[
-                const SizedBox(height: 10),
-                _field(
-                  controller: _dropoffC,
-                  label: 'Zieladresse (Abladen)',
-                  icon: Icons.flag,
-                  onChanged: (_) => setState(() {}),
-                ),
-              ],
-
-              const SizedBox(height: 10),
-
-              if (_stopControllers.isNotEmpty) ...[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Zwischenstopps / weitere Adressen',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      color: ZVColors.textPrimary.withOpacity(0.9),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-              ],
-
-              ...List.generate(_stopControllers.length, (i) {
+              const SizedBox(height: 12),
+              TextField(
+                controller: _dropoffC,
+                decoration: const InputDecoration(labelText: 'Zieladresse *'),
+                onChanged: (_) => setState(() {}),
+              ),
+              const SizedBox(height: 12),
+              ..._stopControllers.asMap().entries.map((entry) {
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 12),
                   child: Row(
                     children: [
                       Expanded(
-                        child: _field(
-                          controller: _stopControllers[i],
-                          label: 'Zusatzadresse ${i + 1}',
-                          icon: Icons.alt_route,
+                        child: TextField(
+                          controller: entry.value,
+                          decoration: InputDecoration(labelText: 'Zwischenhalt ${entry.key + 1}'),
+                          onChanged: (_) => setState(() {}),
                         ),
                       ),
-                      const SizedBox(width: 8),
                       IconButton(
-                        onPressed: () => _removeStop(i),
-                        icon: const Icon(Icons.delete_outline),
+                        icon: const Icon(Icons.remove_circle_outline),
+                        onPressed: () => _removeStop(entry.key),
                       ),
                     ],
                   ),
                 );
               }),
-
-              Align(
-                alignment: Alignment.centerLeft,
-                child: OutlinedButton.icon(
-                  onPressed: _addStop,
-                  icon: const Icon(Icons.add),
-                  label: const Text('Adresse hinzufügen'),
-                ),
+              TextButton.icon(
+                onPressed: _addStop,
+                icon: const Icon(Icons.add),
+                label: const Text('Zwischenhalt hinzufuegen'),
               ),
             ],
           ),
         ),
-
-        const SizedBox(height: 14),
-
-        _blockTitle('Datum & Hinweis (optional)'),
+        const SizedBox(height: 20),
+        const ZVSectionHeader(title: 'Notiz'),
         const SizedBox(height: 8),
         ZVCard(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            children: [
-              InkWell(
-                borderRadius: BorderRadius.circular(14),
-                onTap: _pickDate,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  decoration: BoxDecoration(
-                    color: ZVColors.surface,
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(color: ZVColors.border),
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.event),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          r.date == null
-                              ? 'Datum wählen'
-                              : '${r.date!.day.toString().padLeft(2, '0')}.${r.date!.month.toString().padLeft(2, '0')}.${r.date!.year}',
-                          style: const TextStyle(fontWeight: FontWeight.w900),
-                        ),
-                      ),
-                      const Icon(Icons.chevron_right),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextField(
-                controller: _noteC,
-                maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: 'Hinweise (z.B. Zwischenstopp/Smistamento, Zeitfenster…)',
-                ),
-              ),
-            ],
+          child: TextField(
+            controller: _noteC,
+            maxLines: 3,
+            decoration: const InputDecoration(
+              labelText: 'Zusaetzliche Informationen',
+              alignLabelWithHint: true,
+            ),
           ),
         ),
-
-        const SizedBox(height: 14),
-
+        const SizedBox(height: 24),
         Row(
           children: [
             Expanded(
               child: OutlinedButton.icon(
-                onPressed: () {
-                  _syncToModel();
-                  widget.onBack();
-                },
+                onPressed: widget.onBack,
                 icon: const Icon(Icons.arrow_back),
-                label: const Text('Zurück'),
+                label: const Text('Zurueck'),
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: ElevatedButton.icon(
-                onPressed: _isValid()
+                onPressed: _canContinue
                     ? () {
-                        _syncToModel();
+                        _applyData();
                         widget.onNext();
                       }
                     : null,
@@ -320,35 +215,6 @@ class _SectionContactAddressesState extends State<SectionContactAddresses> {
           ],
         ),
       ],
-    );
-  }
-
-  Widget _blockTitle(String t) {
-    return Text(
-      t,
-      style: const TextStyle(
-        fontWeight: FontWeight.w900,
-        color: ZVColors.textPrimary,
-        fontSize: 14,
-      ),
-    );
-  }
-
-  Widget _field({
-    required TextEditingController controller,
-    required String label,
-    required IconData icon,
-    TextInputType? keyboardType,
-    void Function(String)? onChanged,
-  }) {
-    return TextField(
-      controller: controller,
-      keyboardType: keyboardType,
-      onChanged: onChanged,
-      decoration: InputDecoration(
-        labelText: label,
-        prefixIcon: Icon(icon),
-      ),
     );
   }
 }

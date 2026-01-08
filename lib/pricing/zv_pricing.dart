@@ -168,15 +168,15 @@ class ZVPricing {
     }
 
     if (r.priceType == PriceType.fixed) {
-      r.estimateMin = res.total;
-      r.estimateMax = res.total;
+      r.estimateMin = res.total.toDouble();
+      r.estimateMax = res.total.toDouble();
       return;
     }
 
     // range ±15%
     final min = (res.total * (100 - _rangePct) / 100).round();
     final max = (res.total * (100 + _rangePct) / 100).round();
-    r.estimateMin = min < 0 ? 0 : min;
-    r.estimateMax = max < r.estimateMin ? r.estimateMin : max;
+    r.estimateMin = (min < 0 ? 0 : min).toDouble();
+    r.estimateMax = (max < r.estimateMin ? r.estimateMin : max).toDouble();
   }
 }

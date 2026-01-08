@@ -8,7 +8,7 @@ String serviceLabel(ZVService s) {
     case ZVService.transport:
       return 'Transport';
     case ZVService.entruempelung:
-      return 'Entrümpelung';
+      return 'EntrÃ¼mpelung';
   }
 }
 
@@ -21,7 +21,7 @@ String statusLabel(ZVStatus s) {
     case ZVStatus.angebot:
       return 'Angebot';
     case ZVStatus.bestaetigt:
-      return 'Bestätigt';
+      return 'BestÃ¤tigt';
     case ZVStatus.verloren:
       return 'Verloren';
   }
@@ -43,7 +43,7 @@ IconData statusIcon(ZVStatus s) {
 }
 
 String priceTypeLabel(PriceType? t) {
-  if (t == null) return '—';
+  if (t == null) return '';
   switch (t) {
     case PriceType.fixed:
       return 'Pauschal';
@@ -59,7 +59,7 @@ String parkingLabel(ParkingDistance p) {
     case ParkingDistance.short:
       return '< 10 m';
     case ParkingDistance.medium:
-      return '10–30 m';
+      return '10-30 m';
     case ParkingDistance.long:
       return '> 30 m';
   }

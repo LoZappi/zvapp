@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme/zv_theme.dart';
+import '../../theme/zv_colors.dart';
 import '../../components/zv_card.dart';
 import '../../components/zv_step_bar.dart';
 import '../../components/zv_topbar.dart';
@@ -66,7 +66,7 @@ class _WizardAddressScreenState extends State<WizardAddressScreen> {
                 const SizedBox(height: 10),
                 const Text(
                   'Autocomplete (Google) lo aggiungiamo dopo. Per ora manuale.',
-                  style: TextStyle(color: ZVColors.muted, fontSize: 12),
+                  style: TextStyle(color: ZVColors.textSecondary, fontSize: 12),
                 ),
               ],
             ),

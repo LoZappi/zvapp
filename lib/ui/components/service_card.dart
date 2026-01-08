@@ -29,10 +29,10 @@ class ServiceCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: bg,
             borderRadius: BorderRadius.circular(18),
-            border: Border.all(color: Colors.black.withOpacity(0.06)),
+            border: Border.all(color: Colors.black.withValues(alpha: 0.06)),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 18,
                 offset: const Offset(0, 10),
               ),
@@ -49,15 +49,15 @@ class ServiceCard extends StatelessWidget {
                     color: const Color(0xFFFFF3BF),
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: Colors.black.withOpacity(0.06),
+                      color: Colors.black.withValues(alpha: 0.06),
                     ),
                   ),
                   child: Icon(
                     icon,
                     size: 28,
                     color: disabled
-                        ? Colors.black.withOpacity(0.35)
-                        : Colors.black.withOpacity(0.85),
+                        ? Colors.black.withValues(alpha: 0.35)
+                        : Colors.black.withValues(alpha: 0.85),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -68,7 +68,7 @@ class ServiceCard extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     fontSize: 15,
                     color: disabled
-                        ? Colors.black.withOpacity(0.45)
+                        ? Colors.black.withValues(alpha: 0.45)
                         : Colors.black,
                   ),
                 ),
@@ -80,7 +80,7 @@ class ServiceCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 12,
                     height: 1.25,
-                    color: Colors.black.withOpacity(0.55),
+                    color: Colors.black.withValues(alpha: 0.55),
                   ),
                 ),
               ],

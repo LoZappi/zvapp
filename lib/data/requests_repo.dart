@@ -15,4 +15,12 @@ class RequestsRepo {
   Future<void> clear() async {
     _items.clear();
   }
+
+  Future<void> save() async {
+    // Persist data - placeholder for local storage implementation
+  }
+
+  Future<void> deleteById(String id) async {
+    _items.removeWhere((r) => r.id == id);
+  }
 }

@@ -4,15 +4,15 @@ import '../theme/zv_colors.dart';
 import 'zv_card.dart';
 
 class ZVSectionHeader extends StatelessWidget {
-  final String badge;
+  final String? badge;
   final String title;
-  final String subtitle;
+  final String? subtitle;
 
   const ZVSectionHeader({
     super.key,
-    required this.badge,
+    this.badge,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
   });
 
   @override
@@ -20,27 +20,31 @@ class ZVSectionHeader extends StatelessWidget {
     return ZVCard(
       padding: const EdgeInsets.fromLTRB(16, 18, 16, 18),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center, // ✅ CENTRATO
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ZVBadge(text: badge),
-          const SizedBox(height: 12),
+          if (badge != null) ...[
+            ZVBadge(text: badge!),
+            const SizedBox(height: 12),
+          ],
           Text(
             title,
-            textAlign: TextAlign.center, // ✅ CENTRATO
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w900,
               color: ZVColors.textPrimary,
             ),
           ),
-          const SizedBox(height: 6),
-          Text(
-            subtitle,
-            textAlign: TextAlign.center, // ✅ CENTRATO
-            style: const TextStyle(
-              color: ZVColors.textSecondary,
+          if (subtitle != null) ...[
+            const SizedBox(height: 6),
+            Text(
+              subtitle!,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: ZVColors.textSecondary,
+              ),
             ),
-          ),
+          ],
         ],
       ),
     );
@@ -58,7 +62,7 @@ class ZVBadge extends StatelessWidget {
       decoration: BoxDecoration(
         color: ZVColors.primarySoft,
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: ZVColors.primary.withOpacity(0.25)),
+        border: Border.all(color: ZVColors.primary.withValues(alpha: 0.25)),
       ),
       child: Text(
         text.toUpperCase(),

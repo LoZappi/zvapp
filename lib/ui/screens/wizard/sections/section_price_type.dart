@@ -178,11 +178,11 @@ class _BigPriceButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderColor = selected
-        ? Theme.of(context).colorScheme.primary.withOpacity(0.6)
+        ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.6)
         : Colors.black12;
 
     final bgColor = selected
-        ? Theme.of(context).colorScheme.primary.withOpacity(0.08)
+        ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.08)
         : Colors.white;
 
     return SizedBox(
@@ -243,13 +243,13 @@ class _BigPriceButton extends StatelessWidget {
                                 color: Theme.of(context)
                                     .colorScheme
                                     .primary
-                                    .withOpacity(0.15),
+                                    .withValues(alpha: 0.15),
                                 borderRadius: BorderRadius.circular(999),
                                 border: Border.all(
                                   color: Theme.of(context)
                                       .colorScheme
                                       .primary
-                                      .withOpacity(0.3),
+                                      .withValues(alpha: 0.3),
                                 ),
                               ),
                               child: Text(

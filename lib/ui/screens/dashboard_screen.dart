@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import '../../models/request.dart';
 import '../utils/request_ui_helpers.dart';
 import '../../data/requests_repo.dart';
-import '../../models/request.dart';
 import '../components/zv_card.dart';
 import '../components/zv_section_header.dart';
 import '../components/zv_topbar.dart';
 import 'requests_screen.dart';
 import 'request_detail_screen.dart';
-import 'wizard/wizard_start_screen.dart';
+import 'wizard/wizard_shell_screen.dart';
+import 'wizard/wizard_state.dart';
 
 class DashboardScreen extends StatefulWidget {
   final RequestsRepo repo;
@@ -19,19 +19,6 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  @override
-  void initState() {
-    super.initState();
-    widget.repo.addListener(_onRepo);
-  }
-
-  @override
-  void dispose() {
-    widget.repo.removeListener(_onRepo);
-    super.dispose();
-  }
-
-  void _onRepo() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +36,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          ZVSectionHeader(
+          const ZVSectionHeader(
             badge: 'Dashboard',
             title: 'Schnellübersicht',
-            subtitle: 'Lokal gespeichert. Datei: ${widget.repo.filePath}',
+            subtitle: 'Alle Anfragen werden lokal gespeichert.',
           ),
           const SizedBox(height: 12),
           Row(
@@ -70,9 +57,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: () async {
+                    final st = WizardState(Request(
+                      id: DateTime.now().millisecondsSinceEpoch.toString(),
+                      createdAt: DateTime.now(),
+                      service: ZVService.umzug,
+                      status: ZVStatus.neu,
+                    ));
                     final created = await Navigator.push<Request?>(
                       context,
-                      MaterialPageRoute(builder: (_) => const WizardStartScreen()),
+                      MaterialPageRoute(builder: (_) => WizardShellScreen(st: st)),
                     );
                     if (created != null) await widget.repo.add(created);
                   },

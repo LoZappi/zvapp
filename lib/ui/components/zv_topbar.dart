@@ -1,6 +1,5 @@
-﻿import '../theme/zv_colors.dart';
 import 'package:flutter/material.dart';
-import '../../theme/zv_theme.dart';
+import '../theme/zv_colors.dart';
 
 class ZVTopBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -19,10 +18,10 @@ class ZVTopBar extends StatelessWidget implements PreferredSizeWidget {
             width: 38,
             height: 38,
             decoration: BoxDecoration(
-              color: ZVColors.yellow,
+              color: ZVColors.primary,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Icon(Icons.local_shipping, color: ZVColors.dark),
+            child: Icon(Icons.local_shipping, color: ZVColors.textPrimary),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -42,7 +41,7 @@ class ZVTopBar extends StatelessWidget implements PreferredSizeWidget {
         child: Container(
           height: 8,
           decoration: const BoxDecoration(
-            gradient: LinearGradient(colors: [ZVColors.yellow, Color(0xFFFFE07A)]),
+            gradient: LinearGradient(colors: [ZVColors.primary, Color(0xFFFFE07A)]),
           ),
         ),
       ),

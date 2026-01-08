@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/zv_theme.dart';
+import '../theme/zv_colors.dart';
 import 'zv_card.dart';
 
 class ZVStepBar extends StatelessWidget {
@@ -25,11 +25,11 @@ class ZVStepBar extends StatelessWidget {
               value: pct,
               minHeight: 10,
               backgroundColor: const Color(0x14000000),
-              valueColor: const AlwaysStoppedAnimation(ZVColors.yellow),
+              valueColor: AlwaysStoppedAnimation(ZVColors.primary),
             ),
           ),
           const SizedBox(height: 8),
-          Text('Schritt $step von $total', style: const TextStyle(color: ZVColors.muted, fontWeight: FontWeight.w700)),
+          Text('Schritt $step von $total', style: TextStyle(color: ZVColors.textSecondary, fontWeight: FontWeight.w700)),
         ],
       ),
     );

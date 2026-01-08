@@ -338,7 +338,7 @@ class _SectionEntruempelungStep1State extends State<SectionEntruempelungStep1> {
                                 child: Container(
                                   padding: const EdgeInsets.all(6),
                                   decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.55),
+                                    color: Colors.black.withValues(alpha: 0.55),
                                     borderRadius: BorderRadius.circular(999),
                                   ),
                                   child: const Icon(Icons.close, size: 16, color: Colors.white),
@@ -470,14 +470,14 @@ class _StructureTile extends StatelessWidget {
           boxShadow: selected
               ? [
                   BoxShadow(
-                    color: const Color(0xFFFFD200).withOpacity(0.18),
+                    color: const Color(0xFFFFD200).withValues(alpha: 0.18),
                     blurRadius: 16,
                     offset: const Offset(0, 6),
                   ),
                 ]
               : [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.04),
+                    color: Colors.black.withValues(alpha: 0.04),
                     blurRadius: 14,
                     offset: const Offset(0, 6),
                   ),

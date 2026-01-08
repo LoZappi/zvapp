@@ -19,7 +19,7 @@ class QuickStartScreen extends StatelessWidget {
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         createdAt: DateTime.now(),
         service: service,
-        status: ZVStatus.neu, // ✅ obbligatorio
+        status: ZVStatus.neu,
       ),
     );
 
@@ -28,8 +28,28 @@ class QuickStartScreen extends StatelessWidget {
       MaterialPageRoute(builder: (_) => WizardShellScreen(st: st)),
     );
 
-    if (created != null) {
-      await repo.add(created);
+    if (created != null && context.mounted) {
+      try {
+        await repo.add(created);
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Anfrage erstellt'),
+              backgroundColor: Colors.green,
+              duration: Duration(seconds: 2),
+            ),
+          );
+        }
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Fehler: $e'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
     }
   }
 
@@ -61,7 +81,7 @@ class QuickStartScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: ZVColors.card,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: ZVColors.primary.withOpacity(0.25)),
+                  border: Border.all(color: ZVColors.primary.withValues(alpha: 0.25)),
                   boxShadow: const [
                     BoxShadow(
                       blurRadius: 18,
@@ -96,7 +116,7 @@ class QuickStartScreen extends StatelessWidget {
           preferredSize: const Size.fromHeight(2),
           child: Container(
             height: 2,
-            color: ZVColors.primary.withOpacity(0.75),
+            color: ZVColors.primary.withValues(alpha: 0.75),
           ),
         ),
       ),
@@ -242,7 +262,7 @@ class _BigTile extends StatelessWidget {
               decoration: BoxDecoration(
                 color: ZVColors.primarySoft,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: ZVColors.primary.withOpacity(0.25)),
+                border: Border.all(color: ZVColors.primary.withValues(alpha: 0.25)),
               ),
               child: Icon(icon, size: 16, color: ZVColors.textPrimary),
             ),

@@ -27,7 +27,7 @@ class ZVCard extends StatelessWidget {
           color: ZVColors.card,
           borderRadius: radius,
           border: Border.all(
-            color: ZVColors.border.withOpacity(0.6),
+            color: ZVColors.border.withValues(alpha: 0.6),
             width: 1.2,
           ),
           boxShadow: const [
@@ -41,8 +41,8 @@ class ZVCard extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius: radius,
-          splashColor: ZVColors.primary.withOpacity(0.12),
-          highlightColor: ZVColors.primary.withOpacity(0.06),
+          splashColor: ZVColors.primary.withValues(alpha: 0.12),
+          highlightColor: ZVColors.primary.withValues(alpha: 0.06),
           child: Padding(
             padding: padding,
             child: child,

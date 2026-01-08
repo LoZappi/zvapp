@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/request.dart';
-import '../../../theme/zv_theme.dart';
+import '../../theme/zv_colors.dart';
+import '../../utils/request_ui_helpers.dart';
 import '../../components/zv_card.dart';
 import '../../components/zv_section_header.dart';
 import '../../components/zv_step_bar.dart';
@@ -37,7 +38,7 @@ class WizardSummaryScreen extends StatelessWidget {
                 Text('${r.name} • ${r.phone}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900)),
                 if (r.email.isNotEmpty) ...[
                   const SizedBox(height: 4),
-                  Text(r.email, style: const TextStyle(color: ZVColors.muted)),
+                  Text(r.email, style: TextStyle(color: ZVColors.textSecondary)),
                 ],
                 const SizedBox(height: 10),
                 Text('Abholung: ${r.pickupAddress}'),
@@ -61,7 +62,7 @@ class WizardSummaryScreen extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.euro, color: ZVColors.dark),
+                      Icon(Icons.euro, color: ZVColors.textPrimary),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(

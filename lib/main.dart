@@ -1,10 +1,24 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
+import 'firebase_options.dart';
 import 'data/requests_repo.dart';
 import 'ui/screens/quick_start_screen.dart';
 import 'ui/screens/requests_screen.dart';
 
-void main() {
+final RequestsRepo _globalRepo = RequestsRepo();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    debugPrint('Firebase init failed: $e');
+  }
+  
   runApp(const ZVApp());
 }
 
@@ -13,8 +27,6 @@ class ZVApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repo = RequestsRepo();
-
     const zvYellow = Color(0xFFFFD200);
     const zvBlack = Color(0xFF111111);
 
@@ -29,8 +41,6 @@ class ZVApp extends StatelessWidget {
         secondary: zvBlack,
         onSecondary: Colors.white,
       ),
-
-      // opzionale ma utile: testo e AppBar più "decisi"
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -44,8 +54,8 @@ class ZVApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: theme,
       routes: {
-        '/': (_) => QuickStartScreen(repo: repo),
-        '/requests': (_) => RequestsScreen(repo: repo),
+        '/': (_) => QuickStartScreen(repo: _globalRepo),
+        '/requests': (_) => RequestsScreen(repo: _globalRepo),
       },
     );
   }
